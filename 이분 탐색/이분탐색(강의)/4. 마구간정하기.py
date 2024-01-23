@@ -14,5 +14,23 @@ magugans = list(int(input()) for _ in range(n))
 magugans.sort()
 
 # 1, 2, 4, 8, 9 좌표
+def Count(len):
+    cnt = 1
+    ep = magugans[0]
+    for i in range(1, n):
+        if magugans[i] - ep >= len:
+            cnt += 1
+            ep = magugans[i]
+    return cnt
 
+lo = 1
+ro = max(magugans)
 
+while lo <= ro:
+    mid = (lo + ro) // 2 # 가장 가까운 두 말의 최대거리
+    if Count(mid) >= c:
+        res = mid
+        lo = mid + 1
+    else:
+        ro = mid - 1
+print(res)
